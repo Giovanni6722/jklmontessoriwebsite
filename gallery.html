@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us — JKL Montessori of Suffolk</title>
-  <meta name="description" content="Contact JKL Montessori of Suffolk in Commack, New York.">
+  <title>Gallery — JKL Montessori of Suffolk</title>
+  <meta name="description" content="Photo gallery from JKL Montessori of Suffolk.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
@@ -24,40 +24,31 @@
         <a href="staff.html">Staff</a>
         <a href="admission.html">Admission</a>
         <a href="general-policies.html">General Policies</a>
-        <a href="contact.html" aria-current="page">Contact Us</a>
+        <a href="contact.html">Contact Us</a>
         <a href="newsletters.html">Newsletters</a>
-        <a href="gallery.html">Gallery</a>
+        <a href="gallery.html" aria-current="page">Gallery</a>
       </nav>
     </div>
   </header>
   <main>
     <section class="page-hero">
       <div class="container">
-        <p class="label">Get in Touch</p>
-        <h1>Contact Us</h1>
+        <p class="label">Moments</p>
+        <h1>Gallery</h1>
       </div>
     </section>
 
     <section class="content band">
       <div class="container">
-        <div class="contact-grid">
-          <div>
-            <h2>Visit Us</h2>
-            <p>JKL Montessori of Suffolk<br>Commack, New York</p>
-            <p>Replace with the school's full street address, phone number, and email.</p>
-          </div>
-          <div>
-            <h2>Send a Message</h2>
-            <!-- Netlify picks this form up automatically on deploy; submissions appear under Forms in your Netlify dashboard. -->
-            <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-              <input type="hidden" name="form-name" value="contact">
-              <p hidden><label>Leave this empty: <input name="bot-field"></label></p>
-              <label class="field"><span>Name</span><input type="text" name="name" required></label>
-              <label class="field"><span>Email</span><input type="email" name="email" required></label>
-              <label class="field"><span>Message</span><textarea name="message" required></textarea></label>
-              <button class="btn btn-plum" type="submit">Send Message</button>
-            </form>
-          </div>
+        <p class="lead">A look at life at JKL Montessori of Suffolk.</p>
+        <!-- Replace each .tile with <img src="images/gallery/your-photo.jpg" alt="description"> -->
+        <div class="gallery-grid">
+          <div class="tile">Photo</div>
+          <div class="tile">Photo</div>
+          <div class="tile">Photo</div>
+          <div class="tile">Photo</div>
+          <div class="tile">Photo</div>
+          <div class="tile">Photo</div>
         </div>
       </div>
     </section>
