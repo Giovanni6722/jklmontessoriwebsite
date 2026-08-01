@@ -288,7 +288,7 @@ button.btn { border: none; cursor: pointer; }
 }
 
 /* ============================================================
-   Mobile navigation — hamburger toggle
+   Mobile navigation — hamburger toggle + left slide-out drawer
    ============================================================ */
 
 .nav-toggle {
@@ -302,6 +302,8 @@ button.btn { border: none; cursor: pointer; }
   background: none;
   border: none;
   cursor: pointer;
+  position: relative;
+  z-index: 1001;               /* stays above the drawer + backdrop so it works as the close (X) */
 }
 .nav-toggle-bar {
   display: block;
@@ -321,6 +323,9 @@ button.btn { border: none; cursor: pointer; }
 .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) { opacity: 0; }
 .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+/* dim backdrop behind the drawer (the element is created by menu.js) */
+.nav-backdrop { display: none; }
+
 @media (max-width: 720px) {
   .nav-toggle { display: flex; }
 
@@ -331,19 +336,54 @@ button.btn { border: none; cursor: pointer; }
     flex-wrap: wrap;
   }
 
-  /* nav collapses; stacks vertically when open */
+  /* nav becomes a fixed panel that slides in from the left. Because it is
+     position: fixed it overlays the page and never pushes the rest around. */
   .site-nav {
-    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(82vw, 320px);
     flex-direction: column;
-    width: 100%;
+    flex-wrap: nowrap;
     gap: 0;
-    margin-top: 0.5rem;
+    background: var(--cream-panel);
+    box-shadow: 2px 0 24px rgba(0, 0, 0, 0.18);
+    padding: 4.75rem 1.5rem 2rem;
+    overflow-y: auto;
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition: transform 0.25s ease, visibility 0s linear 0.25s;
+    z-index: 1000;
   }
-  .site-nav.is-open { display: flex; }
+  .site-nav.is-open {
+    transform: translateX(0);
+    visibility: visible;
+    transition: transform 0.25s ease, visibility 0s;
+  }
   .site-nav a {
-    padding: 0.85rem 0.25rem;
+    padding: 0.9rem 0.25rem;
     border-bottom: 1px solid rgba(87, 38, 63, 0.10);
   }
   .site-nav a:hover { color: var(--plum); border-bottom-color: rgba(87, 38, 63, 0.10); }
   .site-nav a[aria-current="page"] { border-bottom-color: var(--plum); }
+
+  .nav-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(30, 12, 22, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0s linear 0.25s;
+    z-index: 900;
+  }
+  .nav-backdrop.is-open {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.25s ease, visibility 0s;
+  }
+
+  /* stop the page behind the drawer from scrolling while it is open */
+  body.nav-open { overflow: hidden; }
 }
